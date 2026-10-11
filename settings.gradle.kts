@@ -1,0 +1,1 @@
+pluginManagement { repositories { google() mavenCentral() gradlePluginPortal() } } dependencyResolutionManagement { repositoriesMode.set(RepositoriesMode.FAIL\_ON\_PROJECT\_REPOS) repositories { google() mavenCentral() } } rootProject.name = "Daily Vedic Insights" include(":app")
