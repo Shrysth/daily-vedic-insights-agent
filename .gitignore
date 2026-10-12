@@ -1,0 +1,16 @@
+# Gradle
+.gradle/
+**/build/
+gradle-8.5/
+gradle-8.5-bin.zip
+
+# Android local configuration and native build outputs
+local.properties
+.externalNativeBuild/
+.cxx/
+captures/
+
+# IDE and OS files
+.idea/
+*.iml
+.DS_Store

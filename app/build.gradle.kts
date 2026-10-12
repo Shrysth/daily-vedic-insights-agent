@@ -10,19 +10,22 @@ plugins {
         versionCode = 1 
         versionName = "1.0.0" 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner" 
+    } 
+    buildTypes { 
+        release { 
+            isMinifyEnabled = false 
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro") 
+            } 
         } 
-        buildTypes { 
-            release { 
-                isMinifyEnabled = false 
-                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), 
-                "proguard-rules.pro") 
-                } 
-            } 
-            compileOptions { 
-                sourceCompatibility = JavaVersion.VERSION\_17 
-                targetCompatibility = JavaVersion.VERSION\_17 
-            } 
-            buildFeatures { viewBinding = true } } dependencies { 
+        compileOptions { 
+            sourceCompatibility = JavaVersion.VERSION_17 
+            targetCompatibility = JavaVersion.VERSION_17 
+        } 
+        buildFeatures { 
+            viewBinding = true 
+        } 
+    } 
+    dependencies { 
                 // AndroidX &amp; Material 3 
                 implementation("androidx.appcompat:appcompat:1.6.1") 
                 implementation("com.google.android.material:material:1.11.0") 
@@ -42,5 +45,6 @@ plugins {
                 // Location Service 
                 implementation("com.google.android.gms:play-services-location:21.1.0") 
                 // Offline Astronomy: Swiss Ephemeris Java Port from Maven Central 
-                implementation("de.th-heilbronn.swisseph:swisseph:2.01.00-01") 
-                }
+    implementation(files("libs/swisseph.jar"))
+                implementation(files("libs/swisseph.jar"))
+}
