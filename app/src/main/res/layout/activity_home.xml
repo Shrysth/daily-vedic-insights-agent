@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0E1B"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.vedicinsights.agent.ui.home.view.MoonSphereView
+        android:id="@+id/heroMoonCanvas"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/textTithiBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#F8FAFC"
+        android:textSize="18sp"
+        android:text="Tithi Loading..." />
+
+</LinearLayout>
