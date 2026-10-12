@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cosmic_background"
-    android:fillViewport="true">
+    android:background="#0B0E1B"
+    android:fillViewport="true"
+    android:scrollbarSize="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,18 +13,93 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/jetbrains_mono"
+                android:text="06:24"
+                android:textColor="#DCE6FF"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jetbrains_mono"
+                android:text="◔"
+                android:textColor="#DCE6FF"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/jetbrains_mono"
+                android:text="▣"
+                android:textColor="#DCE6FF"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/space_grotesk"
+                android:text="◐"
+                android:textColor="#F5A623"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/space_grotesk"
+                android:text="Jyotish Darpana"
+                android:textColor="#F5F7FF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="#1B2239"
+                android:fontFamily="@font/space_grotesk"
+                android:gravity="center"
+                android:text="◉"
+                android:textColor="#F5F7FF"
+                android:textSize="18sp" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create a sankalpa"
-            android:textAppearance="@style/VedicTextAppearanceDisplay" />
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/space_grotesk"
+            android:text="Events"
+            android:textColor="#F5F7FF"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            app:cardBackgroundColor="@color/cosmic_surface"
-            app:cardCornerRadius="20dp">
+            app:cardBackgroundColor="#171E34"
+            app:cardCornerRadius="20dp"
+            app:strokeColor="#29314F"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,206 +107,342 @@
                 android:orientation="vertical"
                 android:padding="18dp">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/space_grotesk"
+                    android:text="Dynamic Ephemeris Engine"
+                    android:textColor="#F5F7FF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/manrope"
+                    android:text="Syncs with precision Drik Panchang planetary transit coordinates."
+                    android:textColor="#BAC8EA"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:text="EVENT TITLE"
+                    android:textColor="#D0B36D"
+                    android:textSize="11sp" />
+
                 <EditText
                     android:id="@+id/inputEventTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Event title"
+                    android:layout_marginTop="8dp"
+                    android:background="#1D253E"
+                    android:fontFamily="@font/space_grotesk"
+                    android:hint="Rudrabhisek &amp; Wealth Initiation"
                     android:inputType="textCapSentences"
-                    android:textColor="@color/text_primary"
-                    android:textColorHint="@color/text_secondary" />
+                    android:padding="12dp"
+                    android:textColor="#F5F7FF"
+                    android:textColorHint="#A9B7D7"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:text="RITUAL DIRECTIVES &amp; NOTES"
+                    android:textColor="#D0B36D"
+                    android:textSize="11sp" />
 
                 <EditText
                     android:id="@+id/inputEventNotes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Notes (optional)"
+                    android:layout_marginTop="8dp"
+                    android:background="#1D253E"
+                    android:fontFamily="@font/manrope"
+                    android:hint="Perform Shiva Mahimna recitation, bilva leaf arpanam, and Lakshmiravana sankalpa during Guru"
                     android:inputType="textCapSentences|textMultiLine"
-                    android:minLines="2"
-                    android:textColor="@color/text_primary"
-                    android:textColorHint="@color/text_secondary" />
+                    android:minLines="3"
+                    android:padding="12dp"
+                    android:textColor="#F5F7FF"
+                    android:textColorHint="#A9B7D7"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Category"
-                    android:textColor="@color/celestial_gold_light"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:text="CATEGORY CLASSIFICATION"
+                    android:textColor="#D0B36D"
+                    android:textSize="11sp" />
 
                 <Spinner
                     android:id="@+id/spinnerEventCategory"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#1D253E"
                     android:entries="@array/event_categories"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:spinnerMode="dropdown" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            app:cardBackgroundColor="#171E34"
+            app:cardCornerRadius="20dp"
+            app:strokeColor="#29314F"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="Vedic conditions"
-                    android:textColor="@color/celestial_gold_light"
+                    android:fontFamily="@font/space_grotesk"
+                    android:text="Anchor Event To Planetary Parameters"
+                    android:textColor="#F5F7FF"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Tithi"
-                    android:textColor="@color/text_primary" />
-                <Spinner
-                    android:id="@+id/spinnerTithi"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:entries="@array/tithi_options"
-                    android:spinnerMode="dropdown" />
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/manrope"
+                    android:text="Event schedules dynamically when all enabled celestial parameters coincide."
+                    android:textColor="#BFCDEB"
+                    android:textSize="13sp" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Paksha"
-                    android:textColor="@color/text_primary" />
-                <Spinner
-                    android:id="@+id/spinnerPaksha"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:entries="@array/paksha_options"
-                    android:spinnerMode="dropdown" />
+                    android:layout_marginTop="14dp"
+                    android:orientation="vertical">
 
-                <TextView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/space_grotesk"
+                            android:text="Tithi &amp; Paksha"
+                            android:textColor="#F5F7FF"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/jetbrains_mono"
+                            android:text="ACTIVE"
+                            android:textColor="#F5A623"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/spinnerTithi"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#1D253E"
+                        android:entries="@array/tithi_options"
+                        android:spinnerMode="dropdown" />
+
+                    <Spinner
+                        android:id="@+id/spinnerPaksha"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#1D253E"
+                        android:entries="@array/paksha_options"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Nakshatra"
-                    android:textColor="@color/text_primary" />
-                <Spinner
-                    android:id="@+id/spinnerNakshatra"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:entries="@array/nakshatra_options"
-                    android:spinnerMode="dropdown" />
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Nakshatra pada"
-                    android:textColor="@color/text_primary" />
-                <Spinner
-                    android:id="@+id/spinnerPada"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:entries="@array/pada_options"
-                    android:spinnerMode="dropdown" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Purnimanta month"
-                    android:textColor="@color/text_primary" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/space_grotesk"
+                            android:text="Nakshatra &amp; Pada"
+                            android:textColor="#F5F7FF"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/jetbrains_mono"
+                            android:text="ACTIVE"
+                            android:textColor="#F5A623"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/spinnerNakshatra"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#1D253E"
+                        android:entries="@array/nakshatra_options"
+                        android:spinnerMode="dropdown" />
+
+                    <Spinner
+                        android:id="@+id/spinnerPada"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#1D253E"
+                        android:entries="@array/pada_options"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+
                 <Spinner
                     android:id="@+id/spinnerMonth"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#1D253E"
                     android:entries="@array/month_options"
                     android:spinnerMode="dropdown" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Masa type"
-                    android:textColor="@color/text_primary" />
                 <Spinner
                     android:id="@+id/spinnerAdhikaMasa"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#1D253E"
                     android:entries="@array/adhika_masa_options"
                     android:spinnerMode="dropdown" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Hora"
-                    android:textColor="@color/text_primary" />
                 <Spinner
                     android:id="@+id/spinnerHora"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#1D253E"
                     android:entries="@array/hora_options"
                     android:spinnerMode="dropdown" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Chaughadiya"
-                    android:textColor="@color/text_primary" />
                 <Spinner
                     android:id="@+id/spinnerChaughadiya"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#1D253E"
                     android:entries="@array/chaughadiya_options"
                     android:spinnerMode="dropdown" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Lagna"
-                    android:textColor="@color/text_primary" />
                 <Spinner
                     android:id="@+id/spinnerLagna"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#1D253E"
                     android:entries="@array/lagna_options"
                     android:spinnerMode="dropdown" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            app:cardBackgroundColor="#171E34"
+            app:cardCornerRadius="18dp"
+            app:strokeColor="#29314F"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="Match behavior"
-                    android:textColor="@color/celestial_gold_light"
+                    android:fontFamily="@font/space_grotesk"
+                    android:text="Conjunction &amp; Matching Logic"
+                    android:textColor="#F5F7FF"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Require"
-                    android:textColor="@color/text_primary" />
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/manrope"
+                    android:text="Select one condition rule set for multi-parameter celestial triggers."
+                    android:textColor="#BAC8EA"
+                    android:textSize="13sp" />
+
                 <Spinner
                     android:id="@+id/spinnerMatchMode"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#1D253E"
                     android:entries="@array/match_mode_options"
                     android:spinnerMode="dropdown" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Repeat cycle"
-                    android:textColor="@color/text_primary" />
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:text="FREQUENCY CYCLE"
+                    android:textColor="#D0B36D"
+                    android:textSize="11sp" />
+
                 <Spinner
                     android:id="@+id/spinnerFrequency"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#1D253E"
                     android:entries="@array/frequency_options"
                     android:spinnerMode="dropdown" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSaveEvent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Save recurring event" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Save Recurring Vedic Event"
+            android:textColor="#0B0E1B"
+            app:backgroundTint="#F5A623" />
     </LinearLayout>
 </ScrollView>
