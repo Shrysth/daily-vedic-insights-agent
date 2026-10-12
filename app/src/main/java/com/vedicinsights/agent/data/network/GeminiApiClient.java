@@ -9,8 +9,10 @@ import retrofit2.http.Query;
 import java.util.concurrent.TimeUnit;
 
 public class GeminiApiClient {
+    private static final String MODEL = "gemini-2.5-flash";
+
     public interface GeminiService {
-        @POST("v1beta/models/gemini-1.5-flash:generateContent")
+        @POST("v1beta/models/" + MODEL + ":generateContent")
         retrofit2.Call<GeminiResponse> generateBriefing(
             @Query("key") String apiKey,
             @Body GeminiRequest request
@@ -34,6 +36,9 @@ public class GeminiApiClient {
     public static class GeminiRequest {
         public Contents[] contents;
         public GeminiRequest(String promptText) {
+            if (promptText == null || promptText.trim().isEmpty()) {
+                throw new IllegalArgumentException("Briefing prompt cannot be empty.");
+            }
             this.contents = new Contents[] { new Contents(promptText) };
         }
     }
@@ -47,6 +52,26 @@ public class GeminiApiClient {
     }
     public static class GeminiResponse {
         public Candidate[] candidates;
+
+        public String getBriefingText() {
+            if (candidates == null || candidates.length == 0
+                || candidates[0].content == null || candidates[0].content.parts == null) {
+                throw new IllegalStateException("Gemini returned no briefing text.");
+            }
+            StringBuilder text = new StringBuilder();
+            for (Part part : candidates[0].content.parts) {
+                if (part.text != null && !part.text.trim().isEmpty()) {
+                    if (text.length() > 0) {
+                        text.append('\n');
+                    }
+                    text.append(part.text.trim());
+                }
+            }
+            if (text.length() == 0) {
+                throw new IllegalStateException("Gemini returned no briefing text.");
+            }
+            return text.toString();
+        }
     }
     public static class Candidate {
         public Contents content;

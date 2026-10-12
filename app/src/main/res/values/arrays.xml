@@ -1,0 +1,150 @@
+<resources>
+    <string-array name="event_categories">
+        <item>Sadhana / Pooja</item>
+        <item>Work</item>
+        <item>Travel</item>
+        <item>Study</item>
+        <item>Personal</item>
+    </string-array>
+    <string-array name="tithi_options">
+        <item>Any tithi</item>
+        <item>Pratipada</item>
+        <item>Dwitiya</item>
+        <item>Tritiya</item>
+        <item>Chaturthi</item>
+        <item>Panchami</item>
+        <item>Shashthi</item>
+        <item>Saptami</item>
+        <item>Ashtami</item>
+        <item>Navami</item>
+        <item>Dashami</item>
+        <item>Ekadashi</item>
+        <item>Dwadashi</item>
+        <item>Trayodashi</item>
+        <item>Chaturdashi</item>
+        <item>Purnima / Amavasya</item>
+    </string-array>
+    <string-array name="paksha_options">
+        <item>Any paksha</item>
+        <item>Shukla</item>
+        <item>Krishna</item>
+    </string-array>
+    <string-array name="nakshatra_options">
+        <item>Any nakshatra</item>
+        <item>Ashwini</item>
+        <item>Bharani</item>
+        <item>Krittika</item>
+        <item>Rohini</item>
+        <item>Mrigashira</item>
+        <item>Ardra</item>
+        <item>Punarvasu</item>
+        <item>Pushya</item>
+        <item>Ashlesha</item>
+        <item>Magha</item>
+        <item>Purva Phalguni</item>
+        <item>Uttara Phalguni</item>
+        <item>Hasta</item>
+        <item>Chitra</item>
+        <item>Swati</item>
+        <item>Vishakha</item>
+        <item>Anuradha</item>
+        <item>Jyeshtha</item>
+        <item>Mula</item>
+        <item>Purva Ashadha</item>
+        <item>Uttara Ashadha</item>
+        <item>Shravana</item>
+        <item>Dhanishta</item>
+        <item>Shatabhisha</item>
+        <item>Purva Bhadrapada</item>
+        <item>Uttara Bhadrapada</item>
+        <item>Revati</item>
+    </string-array>
+    <string-array name="pada_options">
+        <item>Any pada</item>
+        <item>Pada 1</item>
+        <item>Pada 2</item>
+        <item>Pada 3</item>
+        <item>Pada 4</item>
+    </string-array>
+    <string-array name="month_options">
+        <item>Any month</item>
+        <item>Chaitra</item>
+        <item>Vaishakha</item>
+        <item>Jyeshtha</item>
+        <item>Ashadha</item>
+        <item>Shravana</item>
+        <item>Bhadrapada</item>
+        <item>Ashwin</item>
+        <item>Kartika</item>
+        <item>Margashirsha</item>
+        <item>Pausha</item>
+        <item>Magha</item>
+        <item>Phalguna</item>
+    </string-array>
+    <string-array name="adhika_masa_options">
+        <item>Any masa type</item>
+        <item>Regular masa</item>
+        <item>Adhika Masa</item>
+    </string-array>
+    <string-array name="hora_options">
+        <item>Any hora</item>
+        <item>Surya</item>
+        <item>Chandra</item>
+        <item>Mangal</item>
+        <item>Budha</item>
+        <item>Guru</item>
+        <item>Shukra</item>
+        <item>Shani</item>
+    </string-array>
+    <string-array name="chaughadiya_options">
+        <item>Any chaughadiya</item>
+        <item>Udveg</item>
+        <item>Char</item>
+        <item>Labh</item>
+        <item>Amrit</item>
+        <item>Kaal</item>
+        <item>Shubh</item>
+        <item>Rog</item>
+    </string-array>
+    <string-array name="lagna_options">
+        <item>Any lagna</item>
+        <item>Mesha</item>
+        <item>Vrishabha</item>
+        <item>Mithuna</item>
+        <item>Karka</item>
+        <item>Simha</item>
+        <item>Kanya</item>
+        <item>Tula</item>
+        <item>Vrishchika</item>
+        <item>Dhanu</item>
+        <item>Makara</item>
+        <item>Kumbha</item>
+        <item>Meena</item>
+    </string-array>
+    <string-array name="match_mode_options">
+        <item>ALL criteria</item>
+        <item>ANY criterion</item>
+    </string-array>
+    <string-array name="frequency_options">
+        <item>Every day</item>
+        <item>Every 7 days</item>
+        <item>Every 14 days</item>
+        <item>Every 30 days</item>
+    </string-array>
+    <string-array name="weekday_names">
+        <item>Any day</item>
+        <item>Ravivaar</item>
+        <item>Somvaar</item>
+        <item>Mangalvaar</item>
+        <item>Budhvaar</item>
+        <item>Guruvaar</item>
+        <item>Shukravaar</item>
+        <item>Shanivaar</item>
+    </string-array>
+    <integer-array name="frequency_days">
+        <item>1</item>
+        <item>7</item>
+        <item>14</item>
+        <item>30</item>
+    </integer-array>
+</resources>

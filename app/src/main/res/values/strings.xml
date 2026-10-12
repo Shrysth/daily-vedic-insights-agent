@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Daily Vedic Insights</string>
+    <string name="permission_location_rationale">Location is used only on this device to calculate local sunrise, sunset, and the daily Panchang.</string>
+    <string name="permission_calendar_rationale">Calendar access lets the daily briefing include today’s events.</string>
+</resources>

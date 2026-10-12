@@ -1,41 +1,40 @@
-# daily-vedic-insights-agent
+# Daily Vedic Insights
 
-Daily Vedic Insights Agent (Jyotish Darpana)
-Daily Vedic Insights Agent is a privacy-first, autonomous background automation agent built specifically for Android 14 (Motorola Moto G35 5G). It synthesizes 100% offline traditional Vedic astrology (Panchang) mathematical calculations, local Android Calendar events, and personal user goals to deliver actionable, AI-driven daily briefings using the Google AI Studio (Gemini) API.
+Daily Vedic Insights (Jyotish Darpana) is an Android app that combines on-device Panchang calculations, optional local-calendar context, recurring Vedic event matching, and an optional Gemini-generated daily briefing.
 
-Core Features
-Offline Astronomical Engine: Uses a bundled Java port of the Swiss Ephemeris (swisseph) to calculate exact planetary degrees, Tithi, Nakshatra, Paksha, and Purnimanta Lunar Months natively on the device without network requests.
+## Features
 
-24-Hour Jyotish Timeline Matrix: Computes and visually renders overlapping auspicious and inauspicious time windows (Hora, Chaughadiya, Lagna, Rahu Kaal, Abhijit Muhurat).
+- Calculates sidereal Sun and Moon positions, tithi, paksha, nakshatra and pada, Purnimanta month, and Adhika Masa with Astronomy Engine and a Lahiri ayanamsa approximation.
+- Calculates local sunrise and sunset from the device's current location. Weekday (vaar) follows the local sunrise boundary.
+- Builds sunrise-based Hora and Chaughadiya periods and calculates Lagna across the daily timeline.
+- Matches user-created events using selected Vedic conditions, with ALL/ANY matching and a daily, 7-, 14-, or 30-day repeat cycle.
+- Shows a 24-hour muhurta matrix, local calendar entries, and the next three simulated event occurrences.
+- Reschedules its daily WorkManager briefing alarm after delivery and restores the configured alarm after reboot, clock, timezone, or app-package changes.
+- Stores the Gemini API key encrypted with Android Keystore. The key is not bundled in the app or sent anywhere except Google's Gemini API request.
+- Keeps location, calendar data, and astronomical calculations on-device. The optional AI request includes formatted Panchang details. Calendar entries and matched personal event names are excluded unless you explicitly enable personal-detail sharing in Settings.
 
-Sankalpa Event Creator (Vedic Engine): A multi-parameter subset matching engine allowing users to schedule recurring events based on cosmic geometry (e.g., trigger an alert only when Shukla Chaturdashi coincides with Rohini Nakshatra and Guru Hora).
+The calculations are intended for informational use and should not be treated as authoritative religious, medical, legal, or financial advice. Sunrise and lagna depend on accurate device location and timezone settings.
 
-Privacy-Preserving AI Synthesis: Your precise GPS coordinates and raw astrological math never leave the device. Only a formatted string of calculated calendar and astrological data is sent to the LLM for contextual daily advice.
+## First run
 
-Exact Background Awakening: Utilizes Android 14 AlarmManager and WorkManager to silently wake up, compute math, fetch calendar events, and deliver a high-priority native notification before you wake up (e.g., 06:00 AM).
+1. Install and open the app; grant location permission so local sunrise-based calculations can run.
+2. Grant calendar and notification permissions if you want those optional features.
+3. Open **Settings** and save a Gemini API key to enable AI briefings. Calendar entries and matched event names are not sent unless you explicitly turn on personal-detail sharing. Without an API key, the app still delivers a locally generated Panchang summary.
+4. Choose a daily awakening time. Allow exact alarms in Android settings for the most precise schedule; Android may otherwise deliver an inexact alarm.
+5. Create a recurring event and select at least one Vedic condition. ALL requires every selected condition; ANY requires at least one.
 
-Tech Stack
-Language: Java 17
+## Build
 
-Target SDK: Android 14 (API Level 34)
+The project uses Java 17, Android Gradle Plugin 8.2.2, Gradle 8.5, and Android SDK 34.
 
-Architecture: MVVM + Clean Architecture (UI ➔ Domain ➔ Data)
+```sh
+./gradlew testDebugUnitTest assembleDebug
+```
 
-Local Storage: Room Database (SQLite), EncryptedSharedPreferences
+GitHub Actions installs the required Android SDK packages, caches Gradle dependencies, runs unit tests, and assembles a debug APK. The devcontainer installs the same SDK packages after creation.
 
-Networking: Retrofit2, OkHttp3, Google AI Studio (Gemini Flash)
+## Third-party licensing
 
-Astrology Engine: Swiss Ephemeris (swisseph-2.01.00-01.jar)
+Astronomy Engine is distributed under the MIT License; see [third-party notices](THIRD_PARTY_NOTICES.md). The app applies an approximate Lahiri ayanamsa to its ecliptic coordinates. Panchang results are informational and may differ slightly from systems using other ephemeris models or ayanamsa implementations.
 
-Background Processing: AlarmManager (Exact Alarms), WorkManager, BroadcastReceiver
-
-Cloud Development Setup (Zero-Local Install)
-This project is configured to be developed and compiled 100% in the cloud using GitHub Codespaces and GitHub Actions, bypassing the need for a local Android Studio installation.
-
-Launch Codespace: Open the repository in GitHub Codespaces. The custom .devcontainer automatically installs Java 17 and the Android SDK Command-line Tools.
-
-Edit Code: Write Java and XML directly in the browser-based VS Code environment.
-
-Compile & Release: Commit and push your code to the main branch.
-
-Download APK: The GitHub Actions workflow .github/workflows/build-apk.yml will automatically assemble the debug APK. Download it from the "Actions" tab and install it directly on your Moto G35 5G.
+Space Grotesk, Manrope, and JetBrains Mono are bundled under the SIL Open Font License; their license texts are included in the app assets at `app/src/main/assets/licenses/`. See [third-party notices](THIRD_PARTY_NOTICES.md).

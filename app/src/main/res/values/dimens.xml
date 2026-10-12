@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="timeline_cell_width">58dp</dimen>
+</resources>

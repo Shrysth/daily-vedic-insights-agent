@@ -1,26 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0B0E1B"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="@color/cosmic_background"
+    android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/inputEventTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Event Title"
-        android:textColorHint="#94A3B8"
-        android:textColor="#F8FAFC"
-        android:layout_marginBottom="24dp" />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnSaveEvent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#F5A623"
-        android:textColor="#0B0E1B"
-        android:text="Save Vedic Event" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create a sankalpa"
+            android:textAppearance="@style/VedicTextAppearanceDisplay" />
 
-</LinearLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            app:cardBackgroundColor="@color/cosmic_surface"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <EditText
+                    android:id="@+id/inputEventTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Event title"
+                    android:inputType="textCapSentences"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary" />
+
+                <EditText
+                    android:id="@+id/inputEventNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Notes (optional)"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:minLines="2"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Category"
+                    android:textColor="@color/celestial_gold_light"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerEventCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/event_categories"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="Vedic conditions"
+                    android:textColor="@color/celestial_gold_light"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tithi"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerTithi"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/tithi_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Paksha"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerPaksha"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/paksha_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Nakshatra"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerNakshatra"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/nakshatra_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Nakshatra pada"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerPada"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/pada_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Purnimanta month"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerMonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/month_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Masa type"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerAdhikaMasa"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/adhika_masa_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Hora"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerHora"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/hora_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Chaughadiya"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerChaughadiya"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/chaughadiya_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Lagna"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerLagna"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/lagna_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="Match behavior"
+                    android:textColor="@color/celestial_gold_light"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Require"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerMatchMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/match_mode_options"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Repeat cycle"
+                    android:textColor="@color/text_primary" />
+                <Spinner
+                    android:id="@+id/spinnerFrequency"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/frequency_options"
+                    android:spinnerMode="dropdown" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSaveEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Save recurring event" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>

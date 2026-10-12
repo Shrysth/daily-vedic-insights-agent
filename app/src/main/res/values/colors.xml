@@ -1,0 +1,13 @@
+<resources>
+    <color name="cosmic_background">#0B0E1B</color>
+    <color name="cosmic_surface">#13182E</color>
+    <color name="cosmic_surface_variant">#202744</color>
+    <color name="cosmic_outline">#303955</color>
+    <color name="cosmic_stroke">#394363</color>
+    <color name="celestial_gold">#F5A623</color>
+    <color name="celestial_gold_light">#FFD27A</color>
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#AAB4D0</color>
+    <color name="status_good">#69D6B0</color>
+    <color name="status_caution">#F18F85</color>
+</resources>

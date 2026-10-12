@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path android:fillColor="@color/cosmic_background" android:pathData="M24,0a24,24 0,1 0,0 48a24,24 0,1 0,0 -48" />
+    <path android:fillColor="@color/celestial_gold" android:pathData="M24,6a18,18 0,1 0,0 36a18,18 0,1 0,0 -36" />
+    <path android:fillColor="@color/cosmic_background" android:pathData="M31,9a15,15 0,1 0,0 30a15,15 0,1 0,0 -30" />
+    <path android:fillColor="@color/celestial_gold_light" android:pathData="M24,13l2.5,7.5L34,23l-7.5,2.5L24,33l-2.5,-7.5L14,23l7.5,-2.5z" />
+</vector>

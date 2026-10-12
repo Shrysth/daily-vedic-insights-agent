@@ -2,6 +2,7 @@ package com.vedicinsights.agent.data.local.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.ColumnInfo;
 
 @Entity(tableName = "vedic_events")
 public class VedicEventEntity {
@@ -13,13 +14,20 @@ public class VedicEventEntity {
     public String notes;
     public boolean isActive = true;
 
-    // The 8 Nullable Vedic Criteria for dynamic subset matching
+    // A null target means that the user left that criterion set to "Any".
     public Integer targetTithiIndex;
     public String targetPaksha;
     public Integer targetNakshatraIndex;
     public Integer targetPada;
     public Integer targetPurnimantaMonth;
+    public Boolean targetAdhikaMasa;
     public String targetHora;
     public String targetChaughadiya;
     public String targetLagna;
+    @ColumnInfo(defaultValue = "'ALL'")
+    public String matchMode = "ALL";
+    @ColumnInfo(defaultValue = "1")
+    public int frequencyDays = 1;
+    @ColumnInfo(defaultValue = "0")
+    public long createdAtEpochMillis;
 }

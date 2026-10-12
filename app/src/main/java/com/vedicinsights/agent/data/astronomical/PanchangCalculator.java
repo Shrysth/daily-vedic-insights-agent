@@ -1,74 +1,136 @@
 package com.vedicinsights.agent.data.astronomical;
 
-import swisseph.SweConst;
-import swisseph.SwissEph;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import io.github.cosinekitty.astronomy.Time;
 
 public class PanchangCalculator {
-    private final SwissEph sw;
-
-    public PanchangCalculator() {
-        // Zero external asset files — pure Java Moshier analytical engine
-        this.sw = new SwissEph();
-        this.sw.swe_set_sid_mode(SweConst.SE_SIDM_LAHIRI, 0, 0);
-    }
-
     public static class FullPanchang {
-        public int tithiIndex; // 1 to 15
-        public String paksha; // "Shukla" or "Krishna"
-        public int nakshatraIndex; // 1 to 27
-        public int nakshatraPada; // 1 to 4
-        public int purnimantaMonth; // 1 to 12 (1 = Chaitra, ..., 12 = Phalguna)
-        public double moonIllumination; // 0.0 to 1.0
-        public int vaarIndex; // 1 = Ravivaar, ..., 7 = Shanivaar
+        public int tithiIndex;
+        public String paksha;
+        public int nakshatraIndex;
+        public int nakshatraPada;
+        public int purnimantaMonth;
+        public boolean adhikaMasa;
+        public double moonIllumination;
+        public int vaarIndex;
         public double moonLongitude;
         public double sunLongitude;
+        public long sunriseMillis;
+        public long sunsetMillis;
+        public long nextSunriseMillis;
+        public String hora;
+        public String chaughadiya;
+        public String lagna;
     }
 
-    public FullPanchang compute(double julianDayUt) {
+    public FullPanchang compute(double julianDayUt, double latitude, double longitude) {
+        return compute(julianDayUt, latitude, longitude, ZoneId.systemDefault());
+    }
+
+    public FullPanchang compute(double julianDayUt, double latitude, double longitude, ZoneId zone) {
+        validateCoordinates(latitude, longitude);
+        LocalDate localDate = Instant.ofEpochMilli(toEpochMillis(julianDayUt)).atZone(zone).toLocalDate();
+        AstronomicalTimeCalculator timeCalculator = new AstronomicalTimeCalculator();
+        AstronomicalTimeCalculator.SolarDay solarDay =
+            timeCalculator.getSolarDay(localDate, zone, latitude, longitude);
+        AstronomicalTimeCalculator.SolarDay nextSolarDay =
+            timeCalculator.getSolarDay(localDate.plusDays(1), zone, latitude, longitude);
+
         FullPanchang result = new FullPanchang();
-        double[] sunPos = new double[6];
-        double[] moonPos = new double[6];
-        StringBuffer serr = new StringBuffer();
-
-        // Moshier mode flag (SEFLG_MOSEPH)
-        int flags = SweConst.SEFLG_MOSEPH | SweConst.SEFLG_SIDEREAL | SweConst.SEFLG_SPEED;
-        sw.swe_calc_ut(julianDayUt, SweConst.SE_SUN, flags, sunPos, serr);
-        sw.swe_calc_ut(julianDayUt, SweConst.SE_MOON, flags, moonPos, serr);
-
-        result.sunLongitude = sunPos[0];
-        result.moonLongitude = moonPos[0];
-
-        // 1. Nakshatra & Pada
-        double nakshatraSpan = 360.0 / 27.0;
-        result.nakshatraIndex = (int) (result.moonLongitude / nakshatraSpan) + 1;
-        double degreesWithinNakshatra = result.moonLongitude % nakshatraSpan;
-        result.nakshatraPada = (int) (degreesWithinNakshatra / (nakshatraSpan / 4.0)) + 1;
-
-        // 2. Tithi & Paksha
-        double elongation = (result.moonLongitude - result.sunLongitude + 360.0) % 360.0;
-        int rawTithi = (int) (elongation / 12.0) + 1;
-        if (rawTithi <= 15) {
-            result.paksha = "Shukla";
-            result.tithiIndex = rawTithi;
-        } else {
-            result.paksha = "Krishna";
-            result.tithiIndex = rawTithi - 15;
-        }
-
-        // 3. Moon Illumination Phase (0.00 to 1.00)
+        Time time = SiderealAstronomy.fromJulianDay(julianDayUt);
+        double ayanamsa = SiderealAstronomy.lahiriAyanamsa(time);
+        double tropicalSunLongitude = SiderealAstronomy.tropicalSunLongitude(time);
+        double tropicalMoonLongitude = SiderealAstronomy.tropicalMoonLongitude(time);
+        result.sunLongitude = SiderealAstronomy.normalize(tropicalSunLongitude - ayanamsa);
+        result.moonLongitude = SiderealAstronomy.normalize(tropicalMoonLongitude - ayanamsa);
+        double elongation = SiderealAstronomy.normalize(tropicalMoonLongitude - tropicalSunLongitude);
+        int rawTithi = Math.min(30, (int) (elongation / 12.0) + 1);
+        result.paksha = rawTithi <= 15 ? "Shukla" : "Krishna";
+        result.tithiIndex = rawTithi <= 15 ? rawTithi : rawTithi - 15;
         result.moonIllumination = (1.0 - Math.cos(Math.toRadians(elongation))) / 2.0;
 
-        // 4. Purnimanta Month Calculation
-        int amantaBaseMonth = (int) (result.sunLongitude / 30.0) + 1;
-        if (result.paksha.equals("Krishna")) {
-            int nextMonth = amantaBaseMonth + 1;
-            result.purnimantaMonth = (nextMonth > 12) ? 1 : nextMonth;
-        } else {
-            result.purnimantaMonth = amantaBaseMonth;
-        }
+        double previousNewMoon = findAdjacentNewMoon(julianDayUt, -1);
+        double nextNewMoon = findAdjacentNewMoon(julianDayUt, 1);
+        double previousNewMoonSun = siderealSunLongitude(previousNewMoon);
+        double nextNewMoonSun = siderealSunLongitude(nextNewMoon);
+        int previousSunSign = (int) (previousNewMoonSun / 30.0);
+        int nextSunSign = (int) (nextNewMoonSun / 30.0);
+        result.adhikaMasa = previousSunSign == nextSunSign;
+        int amantaMonth = ((previousSunSign + 1) % 12) + 1;
+        result.purnimantaMonth = result.paksha.equals("Krishna") && !result.adhikaMasa
+            ? (amantaMonth % 12) + 1
+            : amantaMonth;
 
-        // 5. Vaar
-        result.vaarIndex = ((int) Math.floor(julianDayUt + 1.5)) % 7 + 1;
+        ZonedDateTime localMoment = Instant.ofEpochMilli(toEpochMillis(julianDayUt)).atZone(zone);
+        LocalDate vaarDate = toEpochMillis(julianDayUt) < solarDay.sunriseMillis
+            ? localMoment.toLocalDate().minusDays(1)
+            : localMoment.toLocalDate();
+        int javaDay = vaarDate.getDayOfWeek().getValue();
+        result.vaarIndex = javaDay == 7 ? 1 : javaDay + 1;
+        result.nakshatraIndex = Math.min(27, (int) (result.moonLongitude / (360.0 / 27.0)) + 1);
+        double degreesWithinNakshatra = result.moonLongitude % (360.0 / 27.0);
+        result.nakshatraPada = Math.min(4, (int) (degreesWithinNakshatra / (360.0 / 108.0)) + 1);
+
+        result.sunriseMillis = solarDay.sunriseMillis;
+        result.sunsetMillis = solarDay.sunsetMillis;
+        result.nextSunriseMillis = nextSolarDay.sunriseMillis;
         return result;
+    }
+
+    private double siderealSunLongitude(double julianDayUt) {
+        Time time = SiderealAstronomy.fromJulianDay(julianDayUt);
+        return SiderealAstronomy.normalize(
+            SiderealAstronomy.tropicalSunLongitude(time) - SiderealAstronomy.lahiriAyanamsa(time)
+        );
+    }
+
+    private double findAdjacentNewMoon(double julianDayUt, int direction) {
+        double firstDay = julianDayUt;
+        double firstPhase = phaseAt(firstDay);
+        for (int day = 1; day <= 35; day++) {
+            double secondDay = julianDayUt + direction * day;
+            double secondPhase = phaseAt(secondDay);
+            boolean crossedNewMoon = direction > 0
+                ? secondPhase < firstPhase && firstPhase - secondPhase > 180.0
+                : secondPhase > firstPhase && secondPhase - firstPhase > 180.0;
+            if (crossedNewMoon) {
+                double left = Math.min(firstDay, secondDay);
+                double right = Math.max(firstDay, secondDay);
+                for (int iteration = 0; iteration < 48; iteration++) {
+                    double middle = (left + right) / 2.0;
+                    if (phaseAt(middle) > 180.0) {
+                        left = middle;
+                    } else {
+                        right = middle;
+                    }
+                }
+                return (left + right) / 2.0;
+            }
+            firstDay = secondDay;
+            firstPhase = secondPhase;
+        }
+        throw new IllegalStateException("Could not find adjacent new moon.");
+    }
+
+    private double phaseAt(double julianDayUt) {
+        Time time = SiderealAstronomy.fromJulianDay(julianDayUt);
+        return SiderealAstronomy.normalize(
+            SiderealAstronomy.tropicalMoonLongitude(time) - SiderealAstronomy.tropicalSunLongitude(time)
+        );
+    }
+
+    private static long toEpochMillis(double julianDayUt) {
+        return Math.round((julianDayUt - 2440587.5) * 86400000.0);
+    }
+
+    private static void validateCoordinates(double latitude, double longitude) {
+        if (!Double.isFinite(latitude) || !Double.isFinite(longitude)
+            || latitude < -90.0 || latitude > 90.0
+            || longitude < -180.0 || longitude > 180.0) {
+            throw new IllegalArgumentException("Latitude and longitude are outside valid ranges.");
+        }
     }
 }
