@@ -41,10 +41,12 @@ plugins {
                 annotationProcessor("androidx.room:room-compiler:$roomVersion") 
                 // Networking (Gemini API Call) &amp; JSON 
                 implementation("com.squareup.retrofit2:retrofit:2.9.0") 
+                implementation("com.squareup.retrofit2:converter-gson:2.9.0")
                 implementation("com.squareup.okhttp3:logging-interceptor:4.12.0") 
                 // Location Service 
                 implementation("com.google.android.gms:play-services-location:21.1.0") 
                 // Offline Astronomy: Swiss Ephemeris Java Port from Maven Central 
-    implementation(files("libs/swisseph.jar"))
                 implementation(files("libs/swisseph.jar"))
+                implementation(files("libs/swisseph.jar"))
+                
 }
